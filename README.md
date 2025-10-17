@@ -1,2 +1,2 @@
 # myProject
-Freshmen Year app in progress. Also learning how to usre github. 
+Freshmen Year app in progress. Also learning how to use github. 
