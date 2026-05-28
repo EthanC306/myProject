@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethan Claybourn — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+
+  <div id="grid-bg"></div>
+  <canvas id="particles"></canvas>
+  <div id="scan-line"></div>
+
+  <!-- SCREEN RIP -->
+  <div id="rip-overlay"></div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <div class="nav-logo"><span>~/</span>ethan.claybourn</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <div class="status-dot"></div>
+        Available for opportunities
+      </div>
+      <h1 class="hero-name" id="hero-name">
+        <span class="line1">Ethan</span>
+        <span class="line2" data-text="Claybourn">Claybourn</span>
+      </h1>
+      <p class="hero-title">CS Student @ Ohio University<span class="blink"></span></p>
+      <p class="hero-desc">Building software from the ground up — web apps, C++ systems, and AI-powered tools. On a mission to understand every layer of the stack.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          View Projects
+        </a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">ethan@portfolio ~ zsh</span>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <div><span class="t-prompt">❯ </span><span class="t-cmd">cat ethans-profile.json</span></div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">scroll</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-wrap">
+      <div class="section-header reveal">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>Hey, I'm Ethan — a <strong>Computer Science freshman at Ohio University</strong>, originally from Fairfield Union, Ohio. I got into programming to understand how things work at every level, and that curiosity hasn't stopped.</p>
+          <p>I build web apps with <strong>React & Vite</strong>, write systems-level code in <strong>C++</strong>, and I'm deeply interested in <strong>AI and machine learning</strong> as a long-term career path. I approach development like I'm training to become a mastermind across the full stack.</p>
+          <p>Outside of code, I built my own PC in 2020, have a background in <strong>audio engineering</strong>, and am always learning something new — whether it's calculus, gym routines, or the latest in AI research.</p>
+          <div class="skills-list" id="skills-list">
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Vite</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">SQLite</span>
+          </div>
+        </div>
+        <div class="about-stats reveal">
+          <div class="stat-box"><div class="stat-num" data-target="5" data-suffix="+">5+</div><div class="stat-label">Projects Built</div></div>
+          <div class="stat-box"><div class="stat-num" data-target="3" data-suffix="">3</div><div class="stat-label">Languages</div></div>
+          <div class="stat-box"><div class="stat-num">OU</div><div class="stat-label">Athens, Ohio</div></div>
+          <div class="stat-box"><div class="stat-num">AI</div><div class="stat-label">End Goal</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" style="background:var(--surface)">
+    <div class="section-wrap">
+      <div class="section-header reveal">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card reveal">
+          <div class="project-num">project_01</div>
+          <div class="project-title">OU Dining Tracker</div>
+          <div class="project-desc">A collaborative Vite/React app for tracking Ohio University dining hall menus. Features Tailwind CSS styling, Git collaboration workflow, and real-time menu browsing.</div>
+          <div class="project-tags">
+            <span class="project-tag tag-react">React</span>
+            <span class="project-tag tag-vite">Vite</span>
+            <span class="project-tag tag-js">Tailwind CSS</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-num">project_02</div>
+          <div class="project-title">Focus Timer App</div>
+          <div class="project-desc">A deployed Pomodoro-style focus timer built with Vite and React. Configured for GitHub Pages deployment with custom base path setup and clean UX.</div>
+          <div class="project-tags">
+            <span class="project-tag tag-react">React</span>
+            <span class="project-tag tag-vite">Vite</span>
+            <span class="project-tag tag-js">GitHub Pages</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+            <a href="#" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card more-card reveal">
+          <div style="text-align:center;color:var(--muted)">
+            <div style="font-size:36px;margin-bottom:14px;opacity:.25">+</div>
+            <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase">More coming soon</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="section-wrap">
+      <div class="section-header reveal">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Resume</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="resume-grid">
+        <div>
+          <div class="resume-col-title reveal">// Education</div>
+          <div class="resume-item fly-left" style="--delay:0s">
+            <div class="resume-date">2025 — Present</div>
+            <div class="resume-role">B.S. Computer Science</div>
+            <div class="resume-org">Ohio University — Athens, OH</div>
+            <div class="resume-detail">Coursework in C++, calculus, and low level computer architecture. Building projects alongside coursework to apply every concept learned.</div>
+          </div>
+          <div class="resume-col-title reveal" style="margin-top:52px">// Skills</div>
+          <div class="resume-item fly-left" style="--delay:.11s">
+            <div class="resume-date">Languages</div>
+            <div class="resume-role">C++, JavaScript, Python</div>
+            <div class="resume-detail">C++ for coursework and systems, JS/React for web projects, Python for scripting.</div>
+          </div>
+          <div class="resume-item fly-left" style="--delay:.22s">
+            <div class="resume-date">Frontend</div>
+            <div class="resume-role">React, Vite, Tailwind CSS</div>
+            <div class="resume-detail">Full project lifecycle from wireframe to deployed app.</div>
+          </div>
+          <div class="resume-item fly-left" style="--delay:.33s">
+            <div class="resume-date">Tools</div>
+            <div class="resume-role">Git, GitHub, Node.js, SQLite</div>
+            <div class="resume-detail">Version control, REST API integration, and backend basics.</div>
+          </div>
+        </div>
+        <div>
+          <div class="resume-col-title reveal">// Experience</div>
+          <div class="resume-item fly-right" style="--delay:0s">
+            <div class="resume-date">June 2024 — Aug 2025</div>
+            <div class="resume-role">Team Lead / Trainer</div>
+            <div class="resume-org">Rite Rug — Ohio</div>
+            <div class="resume-detail">Leading a small team, training coworkers, and managing daily operations to distribute roughly 20,000 samples weekly to 17 locations, increasing efficiency by 50%.</div>
+          </div>
+          <div class="resume-col-title reveal" style="margin-top:52px">// Currently Learning</div>
+          <div class="resume-item fly-right" style="--delay:.11s">
+            <div class="resume-date">Active</div>
+            <div class="resume-role">C++ Programming Coursework</div>
+            <div class="resume-detail">Pointers, inheritance, data structures as well as thinking about how programming works and how to design and build systems effectively.</div>
+          </div>
+          <div class="resume-item fly-right" style="--delay:.22s">
+            <div class="resume-date">Active</div>
+            <div class="resume-role">Calculus II</div>
+            <div class="resume-detail">Integration techniques, series and sequences, polar coordinates.</div>
+          </div>
+          <div class="resume-item fly-right" style="--delay:.33s">
+            <div class="resume-date">Active</div>
+            <div class="resume-role">CodeAcademy</div>
+            <div class="resume-detail">Building on JavaScript and Python fundamentals in parallel with coursework.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:52px;display:flex;justify-content:center">
+        <a href="contents/Ethan Claybourn - Resume.pdf" download class="btn btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume PDF
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="background:var(--surface)">
+    <div class="section-wrap">
+      <div class="section-header reveal">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-inner reveal">
+        <h3 class="contact-headline">Let's <span class="accent">connect.</span></h3>
+        <p class="contact-sub">Open to internships, collaborations, or just talking tech. Reach out through any of these channels.</p>
+        <div class="contact-links">
+          <a href="mailto:cethan247@gmail.com" class="contact-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email
+          </a>
+          <a href="https://github.com" target="_blank" class="contact-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="contact-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Ethan Claybourn</span> · Built with HTML, CSS & JS · Athens, Ohio · <span>2025</span>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

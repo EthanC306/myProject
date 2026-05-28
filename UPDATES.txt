@@ -1,0 +1,82 @@
+================================================================================
+  ETHAN CLAYBOURN — PORTFOLIO SITE UPDATES LOG
+================================================================================
+
+--------------------------------------------------------------------------------
+[2026-05-28] — Major Visual & Feature Overhaul
+--------------------------------------------------------------------------------
+
+LAYOUT / STRUCTURE
+  - Converted single-file HTML into proper Vite project structure:
+    index.html, src/style.css, src/main.js
+  - Added dedicated DOM elements for background layers:
+      #grid-bg     — CSS grid overlay (replaces body::after pseudo-element)
+      #particles   — canvas for interactive particle field
+      #scan-line   — animated horizontal scan line
+      #rip-overlay — screen rip transition container
+  - Added id="main-nav" for JS-controlled nav hide/show
+  - Added id="hero-name" for glitch targeting
+  - Added id="terminal-body" for dynamic typed content
+  - Added id="skills-list" for stagger animation trigger
+
+CURSOR
+  - Added custom cursor (#cursor) — small cyan circle that follows mouse
+  - Added trailing cursor ring (#cursor-trail) with lag effect
+  - cursor: none on body; custom cursor expands on interactive elements
+
+HERO SECTION
+  - Added status-dot pulse animation next to "Available for opportunities"
+  - Restructured h1 into .line1 / .line2 with data-text attribute
+  - Added glitch effect on hero name (.glitch-active, gShift1/gShift2 keyframes)
+    fires randomly every ~3 seconds
+  - Added "scroll" vertical indicator at bottom-left of hero
+  - Terminal now types out JSON content dynamically (line by line, 110ms delay)
+    instead of rendering static HTML
+
+ABOUT SECTION
+  - Skill tags now start hidden and animate in with a stagger (55ms per tag)
+    triggered by IntersectionObserver when the skills list enters viewport
+  - Stat boxes get scale(1.04) + glow on hover
+  - Stat numbers with data-target now animate from 0 to target on scroll-in
+
+PROJECTS SECTION
+  - Project cards have a radial spotlight effect that follows mouse position
+    via CSS custom properties --mx / --my and a ::after gradient
+  - "More coming soon" card uses borderPulse animation (dashed border glow)
+
+RESUME SECTION
+  - fly-left / fly-right classes now declared in HTML with explicit --delay values
+    (cleaner than JS assigning alternating classes)
+  - Resume dot indicator glows on item hover
+
+CONTACT SECTION
+  - Email updated from placeholder (ethan@example.com) to cethan247@gmail.com
+  - Contact headline has pulseGlow animation (text-shadow pulse)
+
+ANIMATIONS ADDED
+  - scanMove    — moves the scan line top to bottom on 7s loop
+  - statusPulse — pulse ring on the availability dot
+  - pulseGlow   — text-shadow glow on contact headline
+  - borderPulse — dashed border glow on the "more coming soon" card
+  - gShift1/2   — horizontal shifts for the glitch effect layers
+  - flyInLeft/Right — already existed, now use --delay CSS variable
+
+SCREEN RIP TRANSITION
+  - 12 colored slices animate in/out on section change (detected via scroll)
+  - Colors: cyan, purple, dark, red, blue alternating
+  - Also fires once on initial page load (~400ms delay)
+
+PARTICLES
+  - 80 particles in cyan / purple / blue, slowly drifting
+  - Particles repel from mouse cursor within 130px radius
+  - Nearby particles (<95px) are connected with faint cyan lines
+
+NAV
+  - Nav links play a character-scramble glitch animation on hover
+  - Nav hides on scroll down, reappears on scroll up (smooth translateY)
+
+MISC
+  - Section numbers (.section-num) flicker randomly every 4 seconds
+  - Scrollbar styled: 4px wide, cyan on hover
+
+================================================================================
