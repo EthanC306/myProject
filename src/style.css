@@ -124,6 +124,48 @@ body::before {
   transform: scaleX(0);
 }
 
+/* ── WARP STAGE ──
+   Wraps all real content. Kept transform-free while idle so the fixed
+   nav stays anchored to the viewport; transforms are applied inline only
+   during a warp, then cleared. The perspective lives inside the inline
+   transform() so no transform-creating ancestor is needed at rest. */
+#warp-stage {
+  position: relative;
+  z-index: 10;
+  transform-style: preserve-3d;  /* was: flat */
+  backface-visibility: hidden;
+}
+
+/* Depth glow + chromatic wash painted behind the panel as it recedes.
+   Opacity is driven by the .warping body state; cheap (compositor only). */
+#warp-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 9995;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 50%, rgba(0, 245, 212, .14), transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 50%, rgba(188, 140, 255, .10), transparent 75%);
+  mix-blend-mode: screen;
+  transition: opacity .28s ease;
+}
+
+body.warping #warp-flash { opacity: 1; }
+
+/* Intensify the scanlines into the void while spinning — leans into the CRT feel. */
+body.warping::before { animation: warpScan .5s steps(3) infinite; }
+
+@keyframes warpScan {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .35; }
+}
+
+/* Accessibility: skip the 3D spin, fall back to a plain jump. */
+@media (prefers-reduced-motion: reduce) {
+  #warp-flash { display: none; }
+}
+
 /* ── NAV ── */
 nav {
   position: fixed;
@@ -394,7 +436,7 @@ nav {
 .dot-g { background: #28c840; }
 
 .terminal-title {
-  margin-left: auto;
+  margin-right: auto;
   color: var(--muted);
   font-size: 11px;
 }

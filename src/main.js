@@ -239,6 +239,91 @@ setInterval(() => {
   setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; el.style.transition = 'all .1s'; }, 90);
 }, 4000);
 
+// ── WARP TRANSITION ───────────────────────────────────────────
+// Recede → spin edge-on (invisible) → swap scroll behind the rip → spin the
+// new section back in from the far side. Two discrete 90° turns mean the
+// mirrored backface is never shown. Transforms live only on #warp-stage and
+// only while active, so the fixed nav stays viewport-anchored at rest.
+const stage = document.getElementById('warp-stage');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const OUT_MS = 470, IN_MS = 560;
+const FAR = 'perspective(1500px) translateZ(-860px) scale(.82)';
+let isWarping = false;
+
+function pivotToViewport() {
+  // Spin about the centre of whatever the user is currently looking at.
+  stage.style.transformOrigin = `50% ${window.scrollY + window.innerHeight / 2}px`;
+}
+
+function jumpTo(y) {
+  const prev = document.documentElement.style.scrollBehavior;
+  document.documentElement.style.scrollBehavior = 'auto';
+  window.scrollTo(0, y);
+  document.documentElement.style.scrollBehavior = prev;
+}
+
+function warpTo(target) {
+  if (isWarping || !target) return;
+
+  // Capture the destination now, before any transform skews getBoundingClientRect.
+  const targetY = target.getBoundingClientRect().top + window.scrollY;
+
+  if (reduceMotion) { jumpTo(targetY); return; }
+
+  isWarping = true;
+  document.body.classList.add('warping');
+  stage.style.willChange = 'transform, opacity, filter';
+  pivotToViewport();
+
+  // Phase 1 — recede and rotate away to the left until edge-on.
+  stage.style.transition =
+    `transform ${OUT_MS}ms cubic-bezier(.7,0,.25,1), opacity ${OUT_MS}ms ease, filter ${OUT_MS}ms ease`;
+requestAnimationFrame(() => { 
+  stage.style.transform = `${FAR} rotateY(-95deg)`;
+  stage.style.opacity = '0';
+  stage.style.filter = 'blur(7px) brightness(1.7) saturate(1.4)';
+});
+  setTimeout(() => {
+    // Mid-swap, fully hidden: fire the rip + glitch to mask the seam, then jump.
+    doRip();
+    heroName.classList.add('glitch-active');
+    setTimeout(() => heroName.classList.remove('glitch-active'), 180);
+
+    jumpTo(targetY);
+    pivotToViewport();
+
+    // Snap to the incoming start (far side, edge-on) with no transition…
+    stage.style.transition = 'none';
+    stage.style.transform = `${FAR} rotateY(95deg)`;
+    void stage.offsetWidth; // force reflow so the snap is committed
+
+    // …then Phase 2 — rotate the new section in to rest.
+    stage.style.transition =
+      `transform ${IN_MS}ms cubic-bezier(.2,.85,.25,1), opacity ${IN_MS}ms ease, filter ${IN_MS}ms ease`;
+    stage.style.transform = '';
+    stage.style.opacity = '1';
+    stage.style.filter = '';
+  }, OUT_MS);
+
+  setTimeout(() => {
+    // Wipe every inline prop so the stage is transform-free again (keeps nav fixed).
+    stage.style.cssText = '';
+    document.body.classList.remove('warping');
+    isWarping = false;
+  }, OUT_MS + IN_MS + 60);
+}
+
+// Route every in-page anchor (nav, hero CTAs) through the warp; leave the
+// placeholder href="#" project links and external/mailto links untouched.
+document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    warpTo(target);
+  });
+});
+
 // ── NAV LINK GLITCH ON HOVER ──────────────────────────────────
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('mouseenter', () => {

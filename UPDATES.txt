@@ -3,6 +3,38 @@
 ================================================================================
 
 --------------------------------------------------------------------------------
+[2026-05-28] — Warp Spin Transition
+--------------------------------------------------------------------------------
+
+WARP TRANSITION (new)
+  - Added a 3D "warp spin" transition fired by in-page nav clicks (the four
+    nav links + hero CTA anchors). The content panel recedes into Z-depth,
+    spins edge-on until invisible, swaps the scroll position behind the screen
+    rip, then spins the new section back in from the far side.
+  - Two discrete 90 degree turns (rotateY -95 out, +95 in) so the mirrored
+    backface is never shown — reads as a clean revolving-door swap.
+  - Reuses existing effects to mask the seam at the hidden midpoint: doRip()
+    screen rip + the hero .glitch-active burst.
+
+STRUCTURE
+  - Wrapped all content (hero -> footer) in #warp-stage; the spin transforms
+    apply only to this element, and only while active (cleared at rest).
+  - Nav kept OUTSIDE the stage as a persistent fixed HUD — a transformed
+    ancestor would re-anchor the fixed nav and cause a jump, so it stays put
+    while the content viewport revolves inside it.
+  - Added #warp-flash — a cyan/purple radial depth glow (mix-blend-mode:
+    screen) painted behind the panel as it recedes.
+
+BEHAVIOR / PERFORMANCE
+  - Animates compositor-only properties (transform / opacity / filter);
+    will-change set during the warp and fully cleared afterward.
+  - transform-origin tracks the current viewport center each phase, so the
+    spin pivots around what the user is actually looking at, at any scroll pos.
+  - Scanlines intensify (warpScan) during the spin for extra CRT feel.
+  - prefers-reduced-motion: skips the spin and flash, plain instant jump.
+  - Tunables at top of the warp block in main.js: OUT_MS, IN_MS, FAR.
+
+--------------------------------------------------------------------------------
 [2026-05-28] — Major Visual & Feature Overhaul
 --------------------------------------------------------------------------------
 
